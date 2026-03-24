@@ -5,6 +5,10 @@ SurfaceMapper is a passive-first attack surface mapping CLI for authorized targe
 **Author:** Kavennesh  
 **Website:** https://kavennesh.com
 
+## Banner Preview
+
+![SurfaceMapper Banner](docs/images/surfacemapper-banner.png)
+
 ## Start Here
 
 If you just want to see it work:
