@@ -254,16 +254,6 @@ Design choices:
 - small focused modules
 - transparent rule-based scoring
 
-## Resume-Friendly Project Description
-
-SurfaceMapper is a Python security engineering project focused on safe external asset discovery and structured reporting. It demonstrates modular CLI architecture, passive reconnaissance, DNS and HTTP metadata collection, transparent heuristic scoring, templated report generation, and test-driven implementation suitable for a public open-source portfolio.
-
-## Resume Bullet Options
-
-- Built a passive-first Python attack surface mapping CLI that discovers subdomains, resolves DNS, probes HTTP metadata, and produces JSON and Markdown security reports with transparent risk scoring.
-- Engineered a modular security tooling project using Typer, Rich, httpx, dnspython, Pydantic, Jinja2, and pytest, emphasizing safe-by-default behavior and public open-source readiness.
-- Designed a responsible attack surface mapping workflow with conservative exposure checks, security header analysis, and clean reporting for defenders, students, and authorized red team use.
-
 ## GitHub Repo Description Options
 
 - Passive-first attack surface mapping for authorized targets only
