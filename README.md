@@ -1,128 +1,98 @@
-# SurfaceMapper
+<div align="center">
 
-SurfaceMapper is a passive-first attack surface mapping CLI for authorized targets only. It helps defenders, students, and authorized security testers discover externally visible assets, inspect lightweight web metadata, and generate clean reports without crossing into exploitation or abusive scanning behavior.
+```
+╔══════════════════════════════════════════════════════════╗
+║  ███████╗██╗   ██╗██████╗ ███████╗ █████╗  ██████╗███████╗║
+║  ██╔════╝██║   ██║██╔══██╗██╔════╝██╔══██╗██╔════╝██╔════╝║
+║  ███████╗██║   ██║██████╔╝█████╗  ███████║██║     █████╗  ║
+║  ╚════██║██║   ██║██╔══██╗██╔══╝  ██╔══██║██║     ██╔══╝  ║
+║  ███████║╚██████╔╝██║  ██║██║     ██║  ██║╚██████╗███████╗║
+║  ╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝  ╚═╝ ╚═════╝╚══════╝║
+║               M A P P E R                                   ║
+╚══════════════════════════════════════════════════════════╝
+```
 
-**Author:** Kavennesh  
-**Website:** https://kavennesh.com
+**Passive-first attack surface mapping for authorized targets only**
 
-## Banner Preview
+[![Python 3.11+](https://img.shields.io/badge/Python-3.11+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
+[![License](https://img.shields.io/badge/License-MIT-22c55e?style=for-the-badge)](LICENSE)
+[![Authorized Only](https://img.shields.io/badge/Use-Authorized_Targets_Only-ef4444?style=for-the-badge)](https://kavennesh.com)
+[![Author](https://img.shields.io/badge/Author-Kavennesh-8b5cf6?style=for-the-badge)](https://kavennesh.com)
 
-![SurfaceMapper Banner](docs/images/surfacemapper-banner.png)
+</div>
 
-## Start Here
+---
 
-If you just want to see it work:
+## 🚀 Quick Start
 
 ```bash
 surfacemapper scan example.com
 ```
 
-What happens next:
+What happens:
 
-- SurfaceMapper prints the project banner with your name and website
-- It validates the root domain
-- It gathers passive subdomains from `crt.sh`
-- It resolves DNS records
-- It probes lightweight HTTP and HTTPS metadata
-- It saves JSON and Markdown reports in `results/`
+- 🎨 Prints the project banner with your name and website
+- ✅ Validates the root domain
+- 🔍 Gathers passive subdomains from `crt.sh`
+- 🌐 Resolves DNS records
+- 📡 Probes HTTP/HTTPS metadata
+- 📄 Saves JSON and Markdown reports in `results/`
 
-## Ethics And Legal Notice
+---
 
-SurfaceMapper is for authorized targets only.
+## ⚖️ Ethics & Legal Notice
 
-- Passive-first design
-- No exploitation features
-- No brute forcing
-- No credential attacks
-- No phishing, payload delivery, persistence, or stealth/evasion
-- Users are responsible for lawful and ethical use
+> **SurfaceMapper is for authorized targets only.**
 
-If you do not have explicit permission to assess a target, do not use this tool against it.
+| ✅ What it does | ❌ What it never does |
+|---|---|
+| Passive-first design | Exploitation features |
+| DNS resolution | Brute forcing |
+| Header analysis | Credential attacks |
+| Risk labeling | Phishing or payload delivery |
+| Clean reporting | Persistence or evasion |
 
-## What You Can Do
+**If you do not have explicit permission to assess a target, do not use this tool against it.**
 
-Choose the path that matches what you want:
+---
 
-### 1. Quick Scan
+## 📖 Usage Guide
 
-Use this when you want a fast end-to-end run with default output names:
+### ⚡ Quick Scan
 
 ```bash
 surfacemapper scan example.com
 ```
 
-Expected outputs:
+Outputs → `results/example.com.json` · `results/example.com.md`
 
-- `results/example.com.json`
-- `results/example.com.md`
-
-### 2. Custom Report Names
-
-Use this when you want your own filenames:
+### 📝 Custom Report Names
 
 ```bash
 surfacemapper scan example.com --json client-scan.json --md client-scan.md
 ```
 
-Expected outputs:
+Outputs → `results/client-scan.json` · `results/client-scan.md`
 
-- `results/client-scan.json`
-- `results/client-scan.md`
-
-### 3. Regenerate Markdown Later
-
-Use this when you already have JSON and want to rebuild the Markdown report:
+### 🔄 Regenerate Markdown
 
 ```bash
 surfacemapper report results/example.com.json --md refreshed.md
 ```
 
-Expected output:
+Output → `results/refreshed.md`
 
-- `results/refreshed.md`
-
-### 4. Check Installed Version
+### ℹ️ Check Version
 
 ```bash
 surfacemapper version
 ```
 
-## Why This Project Exists
+---
 
-SurfaceMapper is designed to be useful without being reckless. The goal is to map external assets and surface basic exposure signals in a way that is safe to publish on GitHub, realistic for security workflows, and clear enough for defenders and students to understand.
+## 🛠️ Installation
 
-## Core Features
-
-- Root-domain validation and normalization
-- Passive subdomain discovery through `crt.sh`
-- DNS resolution for `A`, `AAAA`, `CNAME`, `MX`, and `NS`
-- Safe HTTP and HTTPS probing with modest defaults
-- Collection of titles, status codes, redirects, headers, and response times
-- Conservative technology hints from response headers and HTML markers
-- Security header checks for `Content-Security-Policy`, `Strict-Transport-Security`, `X-Frame-Options`, `X-Content-Type-Options`, `Referrer-Policy`, and `Permissions-Policy`
-- Minimal exposure checks for `/admin`, `/login`, `/dashboard`, and `/wp-login.php`
-- Transparent rule-based risk labels
-- JSON and Markdown reports
-- Rich terminal summaries
-
-## How SurfaceMapper Thinks
-
-The workflow is intentionally simple and transparent:
-
-1. Validate the target domain
-2. Discover passive subdomains
-3. Resolve DNS safely
-4. Probe HTTP and HTTPS conservatively
-5. Check headers and basic technology hints
-6. Look for a very small set of likely admin or login paths
-7. Score findings with clear rules
-8. Save results to `results/`
-
-## Interactive Walkthrough
-
-### Step 1. Install It
-
-Linux and macOS:
+### Linux & macOS
 
 ```bash
 python3 -m venv .venv
@@ -131,7 +101,7 @@ python -m pip install --upgrade pip
 python -m pip install -e '.[dev]'
 ```
 
-Windows PowerShell:
+### Windows PowerShell
 
 ```powershell
 python -m venv .venv
@@ -140,140 +110,158 @@ python -m pip install --upgrade pip
 python -m pip install -e .[dev]
 ```
 
-### Step 2. Confirm It Works
+### Verify Installation
 
 ```bash
 python -m pytest
 surfacemapper version
 ```
 
-You should see:
+You should see the SurfaceMapper banner, **Kavennesh**, **https://kavennesh.com**, and the current version.
 
-- the SurfaceMapper banner
-- `Kavennesh`
-- `https://kavennesh.com`
-- the current version
+---
 
-### Step 3. Run Your First Scan
+## ✨ Core Features
 
-```bash
-surfacemapper scan example.com
+| Feature | Description |
+|---|---|
+| 🔎 **Subdomain Discovery** | Passive collection via `crt.sh` |
+| 🌐 **DNS Resolution** | `A`, `AAAA`, `CNAME`, `MX`, `NS` records |
+| 📡 **HTTP/HTTPS Probing** | Titles, status codes, redirects, response times |
+| 🔒 **Security Headers** | CSP, HSTS, X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Permissions-Policy |
+| 🚨 **Exposure Checks** | `/admin`, `/login`, `/dashboard`, `/wp-login.php` |
+| 🏷️ **Risk Labels** | Transparent rule-based scoring |
+| 📊 **Rich Reports** | JSON + Markdown with terminal summaries |
+| 💡 **Tech Hints** | Conservative heuristics from headers and HTML |
+
+---
+
+## 🧠 How SurfaceMapper Thinks
+
+```
+1. Validate target domain
+       ↓
+2. Discover passive subdomains (crt.sh)
+       ↓
+3. Resolve DNS records safely
+       ↓
+4. Probe HTTP/HTTPS conservatively
+       ↓
+5. Check headers & tech hints
+       ↓
+6. Scan likely admin/login paths
+       ↓
+7. Score findings with clear rules
+       ↓
+8. Save results to results/
 ```
 
-You should see:
+---
 
-- the disclaimer
-- a terminal summary table
-- saved report paths under `results/`
+## 📋 Example CLI Output
 
-### Step 4. Open The Results
-
-Look inside:
-
-```bash
-ls results
 ```
-
-You'll typically find:
-
-- one `.json` file with the full structured scan result
-- one `.md` file with the human-readable report
-
-## Example CLI Flow
-
-```text
 SurfaceMapper v0.1.0
-By Kavennesh - https://kavennesh.com
+By Kavennesh — https://kavennesh.com
+
 Disclaimer: SurfaceMapper is for authorized targets only...
+
 Scanning example.com...
-SurfaceMapper Summary: example.com
+
+┌─────────────────────────────────────────────┐
+│  SurfaceMapper Summary: example.com         │
+├──────────────────┬──────────────────────────┤
+│  Subdomains      │  12 discovered            │
+│  Live Hosts      │  8 responding             │
+│  Risk Level      │  Medium                   │
+└──────────────────┴──────────────────────────┘
+
 Saved JSON report to results/example.com.json
 Saved Markdown report to results/example.com.md
 ```
 
-## Report Contents
+---
 
-Each report is designed to be readable and useful.
+## 📂 Report Contents
 
-JSON report includes:
+### JSON Report
 
-- target details
-- discovery providers
-- discovered subdomains
+- Target details & discovery providers
+- Discovered subdomains
 - DNS records
 - HTTP probe results
-- security header assessment
-- exposure findings
-- risk scoring rationale
+- Security header assessment
+- Exposure findings
+- Risk scoring rationale
 
-Markdown report includes:
+### Markdown Report
 
-- target summary
-- discovered assets
-- DNS findings
-- live web metadata
-- security header results
-- exposure findings
-- risk summary
-- methodology
-- disclaimer
+- Target summary & discovered assets
+- DNS findings & live web metadata
+- Security header results
+- Exposure findings
+- Risk summary
+- Methodology & disclaimer
 
-## Project Structure
+---
 
-```text
+## 🏗️ Project Structure
+
+```
 surfacemapper/
-  surfacemapper/
-    cli.py
-    config.py
-    models.py
-    validators.py
-    core/
-    discovery/
-    dns/
-    probing/
-    reporting/
-    utils/
-  tests/
-  results/
+├── surfacemapper/
+│   ├── cli.py
+│   ├── config.py
+│   ├── models.py
+│   ├── validators.py
+│   ├── core/
+│   ├── discovery/
+│   ├── dns/
+│   ├── probing/
+│   ├── reporting/
+│   └── utils/
+├── tests/
+└── results/
 ```
 
-## Architecture Notes
+---
 
-SurfaceMapper is built with:
+## ⚙️ Tech Stack
 
-- Python 3.11+
-- Typer for the CLI
-- Rich for terminal output
-- httpx for safe HTTP probing
-- dnspython for DNS lookups
-- Pydantic for structured models
-- Jinja2 for report rendering
-- pytest for tests
+| Layer | Library |
+|---|---|
+| CLI | Typer |
+| Terminal UI | Rich |
+| HTTP Probing | httpx |
+| DNS Lookups | dnspython |
+| Data Models | Pydantic |
+| Templating | Jinja2 |
+| Testing | pytest |
+| Language | Python 3.11+ |
 
-Design choices:
+---
 
-- passive-first collection
-- conservative heuristics
-- explicit disclaimers
-- small focused modules
-- transparent rule-based scoring
+## 🗺️ Roadmap
 
-## GitHub Repo Description Options
+- [ ] More passive discovery providers behind a shared interface
+- [ ] Optional caching for discovery and scan reuse
+- [ ] Scan comparisons between historical runs
+- [ ] Expanded reporting views and filtering
+- [ ] CSV export
+- [ ] Asset drift tracking over time
 
-- Passive-first attack surface mapping for authorized targets only
-- Safe external asset discovery and reporting for defenders and students
-- Lightweight domain mapping with transparent security heuristics
+---
 
-## Roadmap
+## 💬 GitHub Repo Description
 
-- Add more passive discovery providers behind a shared interface
-- Add optional caching for discovery and scan reuse
-- Support scan comparisons between historical runs
-- Expand reporting views and filtering
-- Add CSV export
+> *Passive-first attack surface mapping for authorized targets only*
 
-## Future Improvements
+---
 
-- Add additional passive sources while keeping the same safe architecture
-- Expand result comparison to highlight asset drift over time
-- Improve reporting with better summaries and change tracking
+<div align="center">
+
+Made with 🛡️ by **[Kavennesh](https://kavennesh.com)**
+
+*Defenders first. Always authorized. No exploitation.*
+
+</div>
