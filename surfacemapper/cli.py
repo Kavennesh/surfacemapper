@@ -7,7 +7,9 @@ from pathlib import Path
 
 import typer
 from rich.console import Console
+from rich.panel import Panel
 from rich.table import Table
+from rich.text import Text
 
 from surfacemapper import __version__
 from surfacemapper.config import AUTHORIZED_USE_DISCLAIMER
@@ -24,6 +26,15 @@ app = typer.Typer(
 )
 console = Console()
 
+BANNER_ART = r"""
+   _____             __                 __  ___
+  / ___/__  ________/ /___ _________   /  |/  /___ _____  ____  ___  _____
+  \__ \/ / / / ___/ / __ `/ ___/ _ \ / /|_/ / __ `/ __ \/ __ \/ _ \/ ___/
+ ___/ / /_/ / /  / / /_/ / /__/  __// /  / / /_/ / /_/ / /_/ /  __/ /
+/____/\__,_/_/  /_/\__,_/\___/\___//_/  /_/\__,_/ .___/ .___/\___/_/
+                                                /_/   /_/
+"""
+
 
 def _supports_unicode_output() -> bool:
     """Return True when the current stdout encoding can safely render Unicode UI."""
@@ -36,8 +47,25 @@ def _print_banner() -> None:
     """Print the runtime branding banner."""
 
     if _supports_unicode_output():
-        console.print("[bold cyan]SurfaceMapper[/bold cyan] [white]v0.1.0[/white]")
-        console.print("[bold]By Kavennesh[/bold]  [cyan]https://kavennesh.com[/cyan]")
+        banner = Text.from_ansi(BANNER_ART)
+        banner.stylize("bold bright_cyan")
+        details = Text()
+        details.append("Version: ", style="bold white")
+        details.append(__version__, style="bold bright_blue")
+        details.append("   ")
+        details.append("Author: ", style="bold white")
+        details.append("Kavennesh", style="bold bright_magenta")
+        details.append("   ")
+        details.append("Site: ", style="bold white")
+        details.append("https://kavennesh.com", style="underline bright_cyan")
+        panel = Panel.fit(
+            Text.assemble(banner, "\n", details),
+            border_style="bright_blue",
+            title="[bold bright_magenta]SurfaceMapper[/bold bright_magenta]",
+            subtitle="[bright_cyan]Passive-First Attack Surface Mapping[/bright_cyan]",
+            padding=(1, 2),
+        )
+        console.print(panel)
     else:
         print("SurfaceMapper v0.1.0")
         print("By Kavennesh - https://kavennesh.com")
