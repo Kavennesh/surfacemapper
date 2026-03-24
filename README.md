@@ -1,9 +1,26 @@
 # SurfaceMapper
 
-SurfaceMapper is a production-quality, passive-first attack surface mapping CLI for authorized targets only. It helps defenders, security students, and red teamers map externally visible assets, collect lightweight metadata, and generate structured reports without introducing exploit delivery, brute force, stealth, credential attacks, phishing, or persistence behavior.
+SurfaceMapper is a passive-first attack surface mapping CLI for authorized targets only. It helps defenders, students, and authorized security testers discover externally visible assets, inspect lightweight web metadata, and generate clean reports without crossing into exploitation or abusive scanning behavior.
 
-Author: Kavennesh  
-Website: https://kavennesh.com
+**Author:** Kavennesh  
+**Website:** https://kavennesh.com
+
+## Start Here
+
+If you just want to see it work:
+
+```bash
+surfacemapper scan example.com
+```
+
+What happens next:
+
+- SurfaceMapper prints the project banner with your name and website
+- It validates the root domain
+- It gathers passive subdomains from `crt.sh`
+- It resolves DNS records
+- It probes lightweight HTTP and HTTPS metadata
+- It saves JSON and Markdown reports in `results/`
 
 ## Ethics And Legal Notice
 
@@ -11,44 +28,193 @@ SurfaceMapper is for authorized targets only.
 
 - Passive-first design
 - No exploitation features
-- No brute forcing, credential attacks, phishing, payloads, persistence, or stealth/evasion
-- Users are solely responsible for lawful and ethical use
+- No brute forcing
+- No credential attacks
+- No phishing, payload delivery, persistence, or stealth/evasion
+- Users are responsible for lawful and ethical use
 
 If you do not have explicit permission to assess a target, do not use this tool against it.
 
-## Project Overview
+## What You Can Do
 
-Given a root domain such as `example.com`, SurfaceMapper:
+Choose the path that matches what you want:
 
-- Collects subdomains through passive methods
-- Resolves common DNS records
-- Probes HTTP and HTTPS services conservatively
-- Extracts titles, headers, redirects, and simple technology hints
-- Checks important security headers
-- Flags a small set of common exposure paths
-- Assigns transparent rule-based risk labels
-- Exports JSON and Markdown reports
+### 1. Quick Scan
 
-## Resume-Friendly Project Description
+Use this when you want a fast end-to-end run with default output names:
 
-SurfaceMapper is a Python security engineering project focused on safe external asset discovery and security reporting. It demonstrates modular CLI design, structured data modeling, conservative HTTP and DNS collection, transparent risk scoring, templated report generation, and test-driven quality controls suitable for a public GitHub portfolio.
+```bash
+surfacemapper scan example.com
+```
 
-## Features
+Expected outputs:
+
+- `results/example.com.json`
+- `results/example.com.md`
+
+### 2. Custom Report Names
+
+Use this when you want your own filenames:
+
+```bash
+surfacemapper scan example.com --json client-scan.json --md client-scan.md
+```
+
+Expected outputs:
+
+- `results/client-scan.json`
+- `results/client-scan.md`
+
+### 3. Regenerate Markdown Later
+
+Use this when you already have JSON and want to rebuild the Markdown report:
+
+```bash
+surfacemapper report results/example.com.json --md refreshed.md
+```
+
+Expected output:
+
+- `results/refreshed.md`
+
+### 4. Check Installed Version
+
+```bash
+surfacemapper version
+```
+
+## Why This Project Exists
+
+SurfaceMapper is designed to be useful without being reckless. The goal is to map external assets and surface basic exposure signals in a way that is safe to publish on GitHub, realistic for security workflows, and clear enough for defenders and students to understand.
+
+## Core Features
 
 - Root-domain validation and normalization
-- Passive subdomain discovery via `crt.sh`
+- Passive subdomain discovery through `crt.sh`
 - DNS resolution for `A`, `AAAA`, `CNAME`, `MX`, and `NS`
-- Lightweight HTTP and HTTPS probing with a custom user agent
-- Metadata collection for final URL, status, title, redirects, headers, and response time
-- Conservative technology hints from HTML and headers
-- Security header checks for six common defensive headers
-- Minimal safe-list path checks for `/admin`, `/login`, `/dashboard`, and `/wp-login.php`
-- Transparent `Low` / `Medium` / `High` rule-based risk labels
-- JSON and Markdown report generation
-- Rich terminal summary output
-- Pytest coverage for validators, parsing, headers, risk logic, and reporting
+- Safe HTTP and HTTPS probing with modest defaults
+- Collection of titles, status codes, redirects, headers, and response times
+- Conservative technology hints from response headers and HTML markers
+- Security header checks for `Content-Security-Policy`, `Strict-Transport-Security`, `X-Frame-Options`, `X-Content-Type-Options`, `Referrer-Policy`, and `Permissions-Policy`
+- Minimal exposure checks for `/admin`, `/login`, `/dashboard`, and `/wp-login.php`
+- Transparent rule-based risk labels
+- JSON and Markdown reports
+- Rich terminal summaries
 
-## Architecture
+## How SurfaceMapper Thinks
+
+The workflow is intentionally simple and transparent:
+
+1. Validate the target domain
+2. Discover passive subdomains
+3. Resolve DNS safely
+4. Probe HTTP and HTTPS conservatively
+5. Check headers and basic technology hints
+6. Look for a very small set of likely admin or login paths
+7. Score findings with clear rules
+8. Save results to `results/`
+
+## Interactive Walkthrough
+
+### Step 1. Install It
+
+Linux and macOS:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -e '.[dev]'
+```
+
+Windows PowerShell:
+
+```powershell
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+python -m pip install -e .[dev]
+```
+
+### Step 2. Confirm It Works
+
+```bash
+python -m pytest
+surfacemapper version
+```
+
+You should see:
+
+- the SurfaceMapper banner
+- `Kavennesh`
+- `https://kavennesh.com`
+- the current version
+
+### Step 3. Run Your First Scan
+
+```bash
+surfacemapper scan example.com
+```
+
+You should see:
+
+- the disclaimer
+- a terminal summary table
+- saved report paths under `results/`
+
+### Step 4. Open The Results
+
+Look inside:
+
+```bash
+ls results
+```
+
+You'll typically find:
+
+- one `.json` file with the full structured scan result
+- one `.md` file with the human-readable report
+
+## Example CLI Flow
+
+```text
+SurfaceMapper v0.1.0
+By Kavennesh - https://kavennesh.com
+Disclaimer: SurfaceMapper is for authorized targets only...
+Scanning example.com...
+SurfaceMapper Summary: example.com
+Saved JSON report to results/example.com.json
+Saved Markdown report to results/example.com.md
+```
+
+## Report Contents
+
+Each report is designed to be readable and useful.
+
+JSON report includes:
+
+- target details
+- discovery providers
+- discovered subdomains
+- DNS records
+- HTTP probe results
+- security header assessment
+- exposure findings
+- risk scoring rationale
+
+Markdown report includes:
+
+- target summary
+- discovered assets
+- DNS findings
+- live web metadata
+- security header results
+- exposure findings
+- risk summary
+- methodology
+- disclaimer
+
+## Project Structure
 
 ```text
 surfacemapper/
@@ -64,96 +230,56 @@ surfacemapper/
     reporting/
     utils/
   tests/
+  results/
 ```
 
-Design principles:
+## Architecture Notes
 
-- Passive-first collection before lightweight probing
-- Small, focused modules with clear separation of concerns
-- Pydantic models for structured outputs
-- Conservative heuristics with visible rationale
-- Safe defaults that are reasonable for public open source
-
-## Installation
-
-```bash
-python -m venv .venv
-. .venv/bin/activate
-pip install -e .[dev]
-```
-
-Windows PowerShell:
-
-```powershell
-python -m venv .venv
-.venv\Scripts\Activate.ps1
-pip install -e .[dev]
-```
-
-## Usage
-
-```bash
-surfacemapper scan example.com
-surfacemapper scan example.com --json example.json --md example.md
-surfacemapper report results/example.json --md regenerated.md
-surfacemapper version
-```
-
-CLI help text and generated reports include the authorized-use disclaimer. All saved reports are written under the `results/` directory.
-
-## Sample Terminal Summary
-
-```text
-SurfaceMapper Summary: example.com
-┏━━━━━━━━━━━━━━━━━━┳━━━━━┳━━━━━━━━━━━━━━━┳━━━━━━━━┓
-┃ Asset            ┃ DNS ┃ Live Services ┃ Risk   ┃
-┡━━━━━━━━━━━━━━━━━━╇━━━━━╇━━━━━━━━━━━━━━━╇━━━━━━━━┩
-│ example.com      │ 3   │ 2             │ Medium │
-│ admin.example.com│ 2   │ 1             │ High   │
-└──────────────────┴─────┴───────────────┴────────┘
-```
-
-## Methodology
-
-1. Validate and normalize the supplied root domain.
-2. Query `crt.sh` for passive certificate-transparency subdomain candidates.
-3. Resolve common DNS record types safely with graceful error handling.
-4. Probe HTTP and HTTPS using modest defaults and lightweight requests.
-5. Evaluate security headers and conservative technology hints.
-6. Check a short safe-list of common login and admin-style paths.
-7. Generate JSON and Markdown output with transparent risk rationales.
-
-## Developer Notes
+SurfaceMapper is built with:
 
 - Python 3.11+
-- CLI built with Typer and Rich
-- Networking via `httpx` and `dnspython`
-- Structured data via Pydantic
-- Reports rendered through Jinja2
-- Tests written with `pytest`
+- Typer for the CLI
+- Rich for terminal output
+- httpx for safe HTTP probing
+- dnspython for DNS lookups
+- Pydantic for structured models
+- Jinja2 for report rendering
+- pytest for tests
 
-## Roadmap
+Design choices:
 
-- Additional passive providers behind a common interface
-- Optional caching for passive discovery responses
-- Customizable exposure path lists and scoring rules
-- Differential reports between multiple scan runs
-- Optional CSV export
+- passive-first collection
+- conservative heuristics
+- explicit disclaimers
+- small focused modules
+- transparent rule-based scoring
 
-## Future Improvements
+## Resume-Friendly Project Description
 
-- Add more passive sources such as additional certificate-transparency feeds and commercial APIs behind pluggable providers
-- Introduce opt-in caching and historical comparison to track asset drift over time
-- Expand report views with filtering, severity summaries, and delta reporting
+SurfaceMapper is a Python security engineering project focused on safe external asset discovery and structured reporting. It demonstrates modular CLI architecture, passive reconnaissance, DNS and HTTP metadata collection, transparent heuristic scoring, templated report generation, and test-driven implementation suitable for a public open-source portfolio.
 
 ## Resume Bullet Options
 
-- Built a passive-first Python attack surface mapping CLI that discovers subdomains, resolves DNS, probes HTTP metadata, and generates JSON and Markdown security reports with transparent risk scoring.
-- Engineered a modular reconnaissance and reporting pipeline using Typer, Rich, httpx, dnspython, Pydantic, Jinja2, and pytest, with explicit safe-by-default constraints for public open-source release.
-- Designed a security tooling project that balances defensive utility and responsible scope through conservative fingerprinting, header analysis, exposure heuristics, and structured test coverage.
+- Built a passive-first Python attack surface mapping CLI that discovers subdomains, resolves DNS, probes HTTP metadata, and produces JSON and Markdown security reports with transparent risk scoring.
+- Engineered a modular security tooling project using Typer, Rich, httpx, dnspython, Pydantic, Jinja2, and pytest, emphasizing safe-by-default behavior and public open-source readiness.
+- Designed a responsible attack surface mapping workflow with conservative exposure checks, security header analysis, and clean reporting for defenders, students, and authorized red team use.
 
 ## GitHub Repo Description Options
 
 - Passive-first attack surface mapping for authorized targets only
 - Safe external asset discovery and reporting for defenders and students
 - Lightweight domain mapping with transparent security heuristics
+
+## Roadmap
+
+- Add more passive discovery providers behind a shared interface
+- Add optional caching for discovery and scan reuse
+- Support scan comparisons between historical runs
+- Expand reporting views and filtering
+- Add CSV export
+
+## Future Improvements
+
+- Add additional passive sources while keeping the same safe architecture
+- Expand result comparison to highlight asset drift over time
+- Improve reporting with better summaries and change tracking

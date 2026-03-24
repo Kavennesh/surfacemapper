@@ -20,6 +20,8 @@ def test_scan_command_writes_json_and_markdown(monkeypatch):
     with runner.isolated_filesystem():
         result = runner.invoke(app, ["scan", "example.com", "--json", "report.json", "--md", "report.md"])
         assert result.exit_code == 0
+        assert "Kavennesh" in result.stdout
+        assert "kavennesh.com" in result.stdout
         assert Path("results/report.json").exists()
         assert Path("results/report.md").exists()
 
@@ -36,4 +38,12 @@ def test_report_command_regenerates_markdown(monkeypatch):
         save_json_report(payload, "report.json")
         result = runner.invoke(app, ["report", "results/report.json", "--md", "regenerated.md"])
         assert result.exit_code == 0
+        assert "Kavennesh" in result.stdout
         assert Path("results/regenerated.md").exists()
+
+
+def test_version_command_prints_branding():
+    result = runner.invoke(app, ["version"])
+    assert result.exit_code == 0
+    assert "Kavennesh" in result.stdout
+    assert "kavennesh.com" in result.stdout

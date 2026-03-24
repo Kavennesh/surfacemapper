@@ -32,6 +32,17 @@ def _supports_unicode_output() -> bool:
     return "utf" in encoding
 
 
+def _print_banner() -> None:
+    """Print the runtime branding banner."""
+
+    if _supports_unicode_output():
+        console.print("[bold cyan]SurfaceMapper[/bold cyan] [white]v0.1.0[/white]")
+        console.print("[bold]By Kavennesh[/bold]  [cyan]https://kavennesh.com[/cyan]")
+    else:
+        print("SurfaceMapper v0.1.0")
+        print("By Kavennesh - https://kavennesh.com")
+
+
 def _render_summary(result) -> None:
     table = Table(title=f"SurfaceMapper Summary: {result.target.root_domain}")
     table.add_column("Asset")
@@ -74,6 +85,7 @@ def scan(
 ) -> None:
     """Run the full passive-first scan workflow."""
 
+    _print_banner()
     console.print(f"[bold yellow]Disclaimer:[/bold yellow] {AUTHORIZED_USE_DISCLAIMER}")
     if _supports_unicode_output():
         console.print(f"Scanning [bold]{domain}[/bold]...")
@@ -94,6 +106,7 @@ def report(
 ) -> None:
     """Generate Markdown from a previously saved JSON report."""
 
+    _print_banner()
     console.print(f"[bold yellow]Disclaimer:[/bold yellow] {AUTHORIZED_USE_DISCLAIMER}")
     result = load_json_report(json_source)
     default_md = Path(f"{json_source.stem}.md")
@@ -105,7 +118,8 @@ def report(
 def version() -> None:
     """Print the package version."""
 
-    console.print(__version__)
+    _print_banner()
+    console.print(f"Version: {__version__}")
 
 
 if __name__ == "__main__":

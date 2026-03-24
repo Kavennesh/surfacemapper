@@ -1,0 +1,485 @@
+{
+  "target": {
+    "root_domain": "example.com"
+  },
+  "disclaimer": "SurfaceMapper is for authorized targets only. It is passive-first, excludes exploitation features, and users are responsible for lawful use.",
+  "generated_at": "2026-03-24T16:27:24.044958Z",
+  "subdomains": [
+    {
+      "hostname": "dev.example.com",
+      "dns": {
+        "a_records": [],
+        "aaaa_records": [],
+        "cname_records": [],
+        "mx_records": [],
+        "ns_records": [],
+        "resolution_errors": {}
+      },
+      "http_services": [
+        {
+          "url": "https://dev.example.com",
+          "scheme": "https",
+          "final_url": "https://dev.example.com",
+          "status_code": 0,
+          "title": null,
+          "server": null,
+          "x_powered_by": null,
+          "content_type": null,
+          "redirect_chain": [],
+          "response_time_ms": 0.0,
+          "headers": {},
+          "technologies": [],
+          "security_headers": {
+            "checks": []
+          },
+          "exposures": [],
+          "error": "[Errno 11001] getaddrinfo failed"
+        },
+        {
+          "url": "http://dev.example.com",
+          "scheme": "http",
+          "final_url": "http://dev.example.com",
+          "status_code": 0,
+          "title": null,
+          "server": null,
+          "x_powered_by": null,
+          "content_type": null,
+          "redirect_chain": [],
+          "response_time_ms": 0.0,
+          "headers": {},
+          "technologies": [],
+          "security_headers": {
+            "checks": []
+          },
+          "exposures": [],
+          "error": "[Errno 11001] getaddrinfo failed"
+        }
+      ],
+      "risk": {
+        "score": 0,
+        "label": "Low",
+        "reasons": []
+      }
+    },
+    {
+      "hostname": "example.com",
+      "dns": {
+        "a_records": [
+          "104.18.26.120",
+          "104.18.27.120"
+        ],
+        "aaaa_records": [
+          "2606:4700::6812:1a78",
+          "2606:4700::6812:1b78"
+        ],
+        "cname_records": [],
+        "mx_records": [
+          "0 "
+        ],
+        "ns_records": [
+          "hera.ns.cloudflare.com",
+          "elliott.ns.cloudflare.com"
+        ],
+        "resolution_errors": {}
+      },
+      "http_services": [
+        {
+          "url": "https://example.com",
+          "scheme": "https",
+          "final_url": "https://example.com",
+          "status_code": 0,
+          "title": null,
+          "server": null,
+          "x_powered_by": null,
+          "content_type": null,
+          "redirect_chain": [],
+          "response_time_ms": 0.0,
+          "headers": {},
+          "technologies": [],
+          "security_headers": {
+            "checks": []
+          },
+          "exposures": [],
+          "error": "[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)"
+        },
+        {
+          "url": "http://example.com",
+          "scheme": "http",
+          "final_url": "http://example.com",
+          "status_code": 200,
+          "title": "Example Domain",
+          "server": "cloudflare",
+          "x_powered_by": null,
+          "content_type": "text/html",
+          "redirect_chain": [
+            "http://example.com"
+          ],
+          "response_time_ms": 22.88,
+          "headers": {
+            "date": "Tue, 24 Mar 2026 16:27:19 GMT",
+            "content-type": "text/html",
+            "transfer-encoding": "chunked",
+            "connection": "keep-alive",
+            "content-encoding": "gzip",
+            "last-modified": "Wed, 18 Mar 2026 19:14:43 GMT",
+            "allow": "GET, HEAD",
+            "age": "11791",
+            "cf-cache-status": "HIT",
+            "vary": "Accept-Encoding",
+            "server": "cloudflare",
+            "cf-ray": "9e170ae57be34077-MIA"
+          },
+          "technologies": [
+            "Cloudflare"
+          ],
+          "security_headers": {
+            "checks": [
+              {
+                "header": "Content-Security-Policy",
+                "present": false,
+                "value": null,
+                "explanation": "Helps restrict script and content execution sources."
+              },
+              {
+                "header": "Strict-Transport-Security",
+                "present": false,
+                "value": null,
+                "explanation": "Helps enforce HTTPS usage in supporting browsers."
+              },
+              {
+                "header": "X-Frame-Options",
+                "present": false,
+                "value": null,
+                "explanation": "Helps reduce clickjacking exposure."
+              },
+              {
+                "header": "X-Content-Type-Options",
+                "present": false,
+                "value": null,
+                "explanation": "Helps prevent MIME type sniffing."
+              },
+              {
+                "header": "Referrer-Policy",
+                "present": false,
+                "value": null,
+                "explanation": "Controls referrer data shared with other origins."
+              },
+              {
+                "header": "Permissions-Policy",
+                "present": false,
+                "value": null,
+                "explanation": "Restricts access to selected browser features."
+              }
+            ]
+          },
+          "exposures": [],
+          "error": null
+        }
+      ],
+      "risk": {
+        "score": 2,
+        "label": "Low",
+        "reasons": [
+          "Multiple recommended security headers missing on http://example.com."
+        ]
+      }
+    },
+    {
+      "hostname": "m.example.com",
+      "dns": {
+        "a_records": [],
+        "aaaa_records": [],
+        "cname_records": [],
+        "mx_records": [],
+        "ns_records": [],
+        "resolution_errors": {}
+      },
+      "http_services": [
+        {
+          "url": "https://m.example.com",
+          "scheme": "https",
+          "final_url": "https://m.example.com",
+          "status_code": 0,
+          "title": null,
+          "server": null,
+          "x_powered_by": null,
+          "content_type": null,
+          "redirect_chain": [],
+          "response_time_ms": 0.0,
+          "headers": {},
+          "technologies": [],
+          "security_headers": {
+            "checks": []
+          },
+          "exposures": [],
+          "error": "[Errno 11001] getaddrinfo failed"
+        },
+        {
+          "url": "http://m.example.com",
+          "scheme": "http",
+          "final_url": "http://m.example.com",
+          "status_code": 0,
+          "title": null,
+          "server": null,
+          "x_powered_by": null,
+          "content_type": null,
+          "redirect_chain": [],
+          "response_time_ms": 0.0,
+          "headers": {},
+          "technologies": [],
+          "security_headers": {
+            "checks": []
+          },
+          "exposures": [],
+          "error": "[Errno 11001] getaddrinfo failed"
+        }
+      ],
+      "risk": {
+        "score": 0,
+        "label": "Low",
+        "reasons": []
+      }
+    },
+    {
+      "hostname": "products.example.com",
+      "dns": {
+        "a_records": [],
+        "aaaa_records": [],
+        "cname_records": [],
+        "mx_records": [],
+        "ns_records": [],
+        "resolution_errors": {}
+      },
+      "http_services": [
+        {
+          "url": "https://products.example.com",
+          "scheme": "https",
+          "final_url": "https://products.example.com",
+          "status_code": 0,
+          "title": null,
+          "server": null,
+          "x_powered_by": null,
+          "content_type": null,
+          "redirect_chain": [],
+          "response_time_ms": 0.0,
+          "headers": {},
+          "technologies": [],
+          "security_headers": {
+            "checks": []
+          },
+          "exposures": [],
+          "error": "[Errno 11001] getaddrinfo failed"
+        },
+        {
+          "url": "http://products.example.com",
+          "scheme": "http",
+          "final_url": "http://products.example.com",
+          "status_code": 0,
+          "title": null,
+          "server": null,
+          "x_powered_by": null,
+          "content_type": null,
+          "redirect_chain": [],
+          "response_time_ms": 0.0,
+          "headers": {},
+          "technologies": [],
+          "security_headers": {
+            "checks": []
+          },
+          "exposures": [],
+          "error": "[Errno 11001] getaddrinfo failed"
+        }
+      ],
+      "risk": {
+        "score": 0,
+        "label": "Low",
+        "reasons": []
+      }
+    },
+    {
+      "hostname": "support.example.com",
+      "dns": {
+        "a_records": [],
+        "aaaa_records": [],
+        "cname_records": [],
+        "mx_records": [],
+        "ns_records": [],
+        "resolution_errors": {}
+      },
+      "http_services": [
+        {
+          "url": "https://support.example.com",
+          "scheme": "https",
+          "final_url": "https://support.example.com",
+          "status_code": 0,
+          "title": null,
+          "server": null,
+          "x_powered_by": null,
+          "content_type": null,
+          "redirect_chain": [],
+          "response_time_ms": 0.0,
+          "headers": {},
+          "technologies": [],
+          "security_headers": {
+            "checks": []
+          },
+          "exposures": [],
+          "error": "[Errno 11001] getaddrinfo failed"
+        },
+        {
+          "url": "http://support.example.com",
+          "scheme": "http",
+          "final_url": "http://support.example.com",
+          "status_code": 0,
+          "title": null,
+          "server": null,
+          "x_powered_by": null,
+          "content_type": null,
+          "redirect_chain": [],
+          "response_time_ms": 0.0,
+          "headers": {},
+          "technologies": [],
+          "security_headers": {
+            "checks": []
+          },
+          "exposures": [],
+          "error": "[Errno 11001] getaddrinfo failed"
+        }
+      ],
+      "risk": {
+        "score": 0,
+        "label": "Low",
+        "reasons": []
+      }
+    },
+    {
+      "hostname": "www.example.com",
+      "dns": {
+        "a_records": [
+          "104.18.26.120",
+          "104.18.27.120"
+        ],
+        "aaaa_records": [
+          "2606:4700::6812:1a78",
+          "2606:4700::6812:1b78"
+        ],
+        "cname_records": [],
+        "mx_records": [],
+        "ns_records": [],
+        "resolution_errors": {}
+      },
+      "http_services": [
+        {
+          "url": "https://www.example.com",
+          "scheme": "https",
+          "final_url": "https://www.example.com",
+          "status_code": 0,
+          "title": null,
+          "server": null,
+          "x_powered_by": null,
+          "content_type": null,
+          "redirect_chain": [],
+          "response_time_ms": 0.0,
+          "headers": {},
+          "technologies": [],
+          "security_headers": {
+            "checks": []
+          },
+          "exposures": [],
+          "error": "[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)"
+        },
+        {
+          "url": "http://www.example.com",
+          "scheme": "http",
+          "final_url": "http://www.example.com",
+          "status_code": 200,
+          "title": "Example Domain",
+          "server": "cloudflare",
+          "x_powered_by": null,
+          "content_type": "text/html",
+          "redirect_chain": [
+            "http://www.example.com"
+          ],
+          "response_time_ms": 73.07,
+          "headers": {
+            "date": "Tue, 24 Mar 2026 16:27:21 GMT",
+            "content-type": "text/html",
+            "transfer-encoding": "chunked",
+            "connection": "keep-alive",
+            "content-encoding": "gzip",
+            "last-modified": "Tue, 17 Mar 2026 17:24:13 GMT",
+            "allow": "GET, HEAD",
+            "age": "1204",
+            "cf-cache-status": "HIT",
+            "vary": "Accept-Encoding",
+            "server": "cloudflare",
+            "cf-ray": "9e170af2bb83708a-MIA"
+          },
+          "technologies": [
+            "Cloudflare"
+          ],
+          "security_headers": {
+            "checks": [
+              {
+                "header": "Content-Security-Policy",
+                "present": false,
+                "value": null,
+                "explanation": "Helps restrict script and content execution sources."
+              },
+              {
+                "header": "Strict-Transport-Security",
+                "present": false,
+                "value": null,
+                "explanation": "Helps enforce HTTPS usage in supporting browsers."
+              },
+              {
+                "header": "X-Frame-Options",
+                "present": false,
+                "value": null,
+                "explanation": "Helps reduce clickjacking exposure."
+              },
+              {
+                "header": "X-Content-Type-Options",
+                "present": false,
+                "value": null,
+                "explanation": "Helps prevent MIME type sniffing."
+              },
+              {
+                "header": "Referrer-Policy",
+                "present": false,
+                "value": null,
+                "explanation": "Controls referrer data shared with other origins."
+              },
+              {
+                "header": "Permissions-Policy",
+                "present": false,
+                "value": null,
+                "explanation": "Restricts access to selected browser features."
+              }
+            ]
+          },
+          "exposures": [],
+          "error": null
+        }
+      ],
+      "risk": {
+        "score": 2,
+        "label": "Low",
+        "reasons": [
+          "Multiple recommended security headers missing on http://www.example.com."
+        ]
+      }
+    }
+  ],
+  "discovery_providers": [
+    "crt.sh"
+  ],
+  "methodology": [
+    "Validated the root domain and rejected URL-style input.",
+    "Collected passive subdomains from crt.sh.",
+    "Resolved A, AAAA, CNAME, MX, and NS records.",
+    "Probed HTTP and HTTPS with lightweight metadata collection only.",
+    "Assessed security headers, exposure paths, and conservative technology hints.",
+    "Assigned transparent rule-based risk labels."
+  ]
+}
