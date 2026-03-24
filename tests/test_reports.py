@@ -1,6 +1,8 @@
 from datetime import datetime, timezone
+from pathlib import Path
 
 from surfacemapper.models import DNSRecordSet, RiskAssessment, ScanResult, SubdomainAsset, Target
+from surfacemapper.reporting.json_report import resolve_results_path
 from surfacemapper.reporting.markdown_report import render_markdown_report
 
 
@@ -23,3 +25,7 @@ def test_render_markdown_report_contains_target_and_disclaimer():
     assert "example.com" in markdown
     assert "Authorized targets only." in markdown
     assert "Passive discovery" in markdown
+
+
+def test_resolve_results_path_places_reports_under_results():
+    assert resolve_results_path("custom/report.json") == Path("results/custom/report.json")

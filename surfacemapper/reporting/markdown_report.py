@@ -7,6 +7,7 @@ from pathlib import Path
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 from surfacemapper.models import ScanResult
+from surfacemapper.reporting.json_report import resolve_results_path
 
 
 TEMPLATE_DIR = Path(__file__).parent / "templates"
@@ -39,8 +40,7 @@ def render_markdown_report(result: ScanResult) -> str:
 def save_markdown_report(result: ScanResult, destination: str | Path) -> Path:
     """Write a Markdown report to disk."""
 
-    path = Path(destination)
+    path = resolve_results_path(destination)
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(render_markdown_report(result), encoding="utf-8")
     return path
-

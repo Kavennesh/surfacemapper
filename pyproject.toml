@@ -9,7 +9,7 @@ description = "SurfaceMapper is a passive-first attack surface mapping CLI for a
 readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "MIT" }
-authors = [{ name = "Open Source Contributor" }]
+authors = [{ name = "Kavennesh" }]
 keywords = ["security", "attack-surface", "asset-discovery", "reconnaissance", "defensive-security"]
 classifiers = [
   "Development Status :: 3 - Alpha",
@@ -36,8 +36,8 @@ dependencies = [
 dev = ["pytest>=8.2.0,<9.0.0"]
 
 [project.urls]
-Homepage = "https://github.com/example/surfacemapper"
-Repository = "https://github.com/example/surfacemapper"
+Homepage = "https://kavennesh.com"
+Repository = "https://kavennesh.com"
 
 [project.scripts]
 surfacemapper = "surfacemapper.cli:app"

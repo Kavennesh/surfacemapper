@@ -2,6 +2,9 @@
 
 SurfaceMapper is a production-quality, passive-first attack surface mapping CLI for authorized targets only. It helps defenders, security students, and red teamers map externally visible assets, collect lightweight metadata, and generate structured reports without introducing exploit delivery, brute force, stealth, credential attacks, phishing, or persistence behavior.
 
+Author: Kavennesh  
+Website: https://kavennesh.com
+
 ## Ethics And Legal Notice
 
 SurfaceMapper is for authorized targets only.
@@ -91,12 +94,12 @@ pip install -e .[dev]
 
 ```bash
 surfacemapper scan example.com
-surfacemapper scan example.com --json out/report.json --md out/report.md
-surfacemapper report out/report.json --md out/report.md
+surfacemapper scan example.com --json example.json --md example.md
+surfacemapper report results/example.json --md regenerated.md
 surfacemapper version
 ```
 
-CLI help text and generated reports include the authorized-use disclaimer.
+CLI help text and generated reports include the authorized-use disclaimer. All saved reports are written under the `results/` directory.
 
 ## Sample Terminal Summary
 
@@ -154,4 +157,3 @@ SurfaceMapper Summary: example.com
 - Passive-first attack surface mapping for authorized targets only
 - Safe external asset discovery and reporting for defenders and students
 - Lightweight domain mapping with transparent security heuristics
-
