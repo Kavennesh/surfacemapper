@@ -1,0 +1,64 @@
+# SurfaceMapper Report
+
+**Target:** `{{ result.target.root_domain }}`
+**Generated:** `{{ result.generated_at.isoformat() }}`
+**Discovery Providers:** {{ result.discovery_providers | join(", ") }}
+**Live Web Assets:** {{ live_assets }}
+
+## Disclaimer
+
+{{ result.disclaimer }}
+
+## Summary
+
+- Subdomains discovered: {{ result.subdomains | length }}
+- Highest risk label: {{ highest_risk_label }}
+
+## Subdomains
+
+{% for asset in result.subdomains %}
+### {{ asset.hostname }}
+
+- Risk: {{ asset.risk.label }} (score {{ asset.risk.score }})
+- Risk reasons: {{ asset.risk.reasons | join("; ") if asset.risk.reasons else "None" }}
+- A: {{ asset.dns.a_records | join(", ") if asset.dns.a_records else "None" }}
+- AAAA: {{ asset.dns.aaaa_records | join(", ") if asset.dns.aaaa_records else "None" }}
+- CNAME: {{ asset.dns.cname_records | join(", ") if asset.dns.cname_records else "None" }}
+- MX: {{ asset.dns.mx_records | join(", ") if asset.dns.mx_records else "None" }}
+- NS: {{ asset.dns.ns_records | join(", ") if asset.dns.ns_records else "None" }}
+
+{% for probe in asset.http_services %}
+#### {{ probe.url }}
+
+- Status: {{ probe.status_code if probe.status_code else "Unavailable" }}
+- Final URL: {{ probe.final_url }}
+- Title: {{ probe.title or "None" }}
+- Server: {{ probe.server or "None" }}
+- X-Powered-By: {{ probe.x_powered_by or "None" }}
+- Content-Type: {{ probe.content_type or "None" }}
+- Response Time: {{ probe.response_time_ms }} ms
+- Technologies: {{ probe.technologies | join(", ") if probe.technologies else "None" }}
+- Redirect Chain: {{ probe.redirect_chain | join(" -> ") if probe.redirect_chain else "None" }}
+- Error: {{ probe.error or "None" }}
+
+Security headers:
+{% for check in probe.security_headers.checks %}
+- {{ check.header }}: {{ "present" if check.present else "missing" }}{% if check.value %} ({{ check.value }}){% endif %} - {{ check.explanation }}
+{% endfor %}
+
+Exposure findings:
+{% for finding in probe.exposures %}
+- {{ finding.path }} returned {{ finding.status_code }} ({{ finding.confidence }}) - {{ finding.reason }}
+{% else %}
+- None
+{% endfor %}
+
+{% endfor %}
+{% endfor %}
+
+## Methodology
+
+{% for item in result.methodology %}
+- {{ item }}
+{% endfor %}
+
